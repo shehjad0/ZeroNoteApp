@@ -37,7 +37,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://smart-care.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://zeronoteapp.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
@@ -69,7 +69,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'noteapp.urls'
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://smart-care.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://zeronoteapp.onrender.com']
 
 TEMPLATES = [
     {
