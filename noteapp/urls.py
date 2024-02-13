@@ -16,29 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-from rest_framework import routers
-from .views import TagViewSet, NotebookViewSet, NoteViewSet, TaggedNoteViewSet, NotebookNoteViewSet
-# from . views import UserViewSet
+from rest_framework.routers import DefaultRouter
+from .views import NotebookViewSet, TagViewSet, NoteViewSet
 
-# router = DefaultRouter()
-# router.register('users', UserViewSet)
-
-router = routers.DefaultRouter()
-router.register(r'tags', TagViewSet)
-router.register(r'notebooks', NotebookViewSet)
-router.register(r'notes', NoteViewSet)
-# router.register(r'tagged_notes', TaggedNoteViewSet, basename='tagged_notes')
-# router.register(r'notebook_notes', NotebookNoteViewSet, basename='notebook_notes')
+router = DefaultRouter()
+router.register(r'notebooks', NotebookViewSet, basename='notebook')
+router.register(r'tags', TagViewSet, basename='tag')
+router.register(r'notes', NoteViewSet, basename='note')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('tags/<int:tag_id>/notes', TaggedNoteViewSet.as_view({'get': 'list'}), name='tagged_notes'),
-    path('notebooks/<int:notebook_id>/notes', NotebookNoteViewSet.as_view({'get': 'list'}), name='notebook_notes'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
 ]
-
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
